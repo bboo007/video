@@ -210,7 +210,7 @@ function commitLogin() {
         var params = $("#loginForm").serialize();
         // alert(params);
         // post要小写
-        $.post('/' + getRootPath() + "/user/loginUser", params, function (data) {
+        $.post("/user/login", params, function (data) {
             // alert(data);
             if (data == 'success') {
 

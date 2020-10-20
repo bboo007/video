@@ -48,7 +48,7 @@
         <div id="userBlock" style="display:none;float:right">
 
             <a href="javascript:;" id="loginout">退出</a>
-            <a href="user/showMyProfile" id="account">${sessionScope.userAccount}</a>
+            <a href="${pageContext.request.contextPath}/user/show" id="account">${sessionScope.userAccount}</a>
         </div>
 
         <a onclick="JavaScript:addFavorite2()"><img src="${pageContext.request.contextPath}/img/sc.png"
@@ -73,7 +73,7 @@
                     <c:forEach items="${subjectList}" var="subject">
                         <li>
                             <a target="_blank"
-                               href="${pageContext.request.contextPath}/course/${subject.id}">${subject.subjectName}</a>
+                               href="${pageContext.request.contextPath}/course/map/${subject.id}">${subject.subjectName}</a>
                         </li>
                     </c:forEach>
                 </ul>
@@ -104,7 +104,7 @@
             <table cellspacing="10">
                 <tr>
                     <td colspan="2">
-                        <a href="${pageContext.request.contextPath}/course/course/1">
+                        <a href="${pageContext.request.contextPath}/course/map/1">
                             <img src="${pageContext.request.contextPath}/img/html5.jpg" alt="" class="image scale"
                                  draggable="false">
                             <div class="headline">
@@ -115,7 +115,7 @@
                     </td>
                     <td>
                         <!--上线时修改id-->
-                        <a href="${pageContext.request.contextPath}/course/course/6">
+                        <a href="${pageContext.request.contextPath}/course/map/6">
                             <img src="${pageContext.request.contextPath}/img/ui.jpg" alt="" class="image scale"
                                  draggable="false">
                             <div class="headline">
@@ -147,7 +147,7 @@
                         </a>
                     </td>
                     <td colspan="2">
-                        <a href="${pageContext.request.contextPath}/course/course/10">
+                        <a href="${pageContext.request.contextPath}/course/map/10">
                             <img src="${pageContext.request.contextPath}/img/python.jpg" alt="" class="image scale"
                                  draggable="false">
                             <div class="headline">
@@ -159,7 +159,7 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <a href="${pageContext.request.contextPath}/course/course/11">
+                        <a href="${pageContext.request.contextPath}/course/map/11">
                             <img src="${pageContext.request.contextPath}/img/php.jpg" alt="" class="image scale"
                                  draggable="false">
                             <div class="headline">

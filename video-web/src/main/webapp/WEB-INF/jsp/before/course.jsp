@@ -95,7 +95,7 @@
                     <c:forEach items="${subjectList}" var="subject">
                         <li>
                             <a target="_blank"
-                               href="${pageContext.request.contextPath}/course/course/${subject.id}">${subject.subjectName}</a>
+                               href="${pageContext.request.contextPath}/course/map/${subject.id}">${subject.subjectName}</a>
                         </li>
                     </c:forEach>
                 </ul>
@@ -261,7 +261,7 @@
         //alert($("#isLogin").val());
         if ((null != "${sessionScope.userAccount}" && "${sessionScope.userAccount}" != "") || ($("#isLogin").val() == 1)) {
             //如果登录
-            location.href = "${pageContext.request.contextPath}/video/showVideo?videoId=" + videoId + "&subjectName=" + '${subject.subjectName}';
+            location.href = "${pageContext.request.contextPath}/video/show?videoId=" + videoId + "&subjectName=" + '${subject.subjectName}';
         } else {
             //如果不登录，弹登录框
             $("#login").removeClass("hidden");

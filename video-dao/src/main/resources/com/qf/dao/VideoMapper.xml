@@ -89,10 +89,11 @@
     <result column="image_url" property="imageUrl" jdbcType="VARCHAR" />
     <result column="play_num" property="playNum" jdbcType="INTEGER" />
     <result column="speaker_name" property="speakerName" jdbcType="VARCHAR" />
+    <result column="speaker_desc" property="speakerDesc" jdbcType="LONGVARCHAR" />
   </resultMap>
   <select id="findByPage" resultMap="PageMap">
     select video.video.id, title, detail, time, speaker_id, course_id, video_url, image_url, play_num,
-           speaker_name
+           speaker_name, speaker_desc
     from video.video join video.speaker on video.speaker_id = speaker.id
           <trim>
             <if test="title != null and title != ''">

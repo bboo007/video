@@ -100,9 +100,9 @@
         <collection property="courseList" column="subject_id" select="courseList"/>
     </resultMap>
 
-    <select id="findBySubjectId" resultMap="mapBySubjectId">
+    <select id="findBySubjectId" resultMap="mapBySubjectId" parameterType="String">
         select id subject_id, subject_name from video.subject vs
-        where vs.id = 1 order by vs.subject_name
+        where vs.id = #{subjectId} order by vs.subject_name
     </select>
 
     <select id="courseList" resultMap="courseList">

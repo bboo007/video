@@ -10,4 +10,6 @@ public interface CourseService {
     List<Course> findALl();
 
     List<Map> findBySubjectId(String subjectId);
+
+    Course findById(Integer courseId);
 }

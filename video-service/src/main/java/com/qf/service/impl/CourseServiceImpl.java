@@ -24,4 +24,9 @@ public class CourseServiceImpl implements CourseService {
     public List<Map> findBySubjectId(String subjectId) {
         return courseMapper.findBySubjectId(subjectId);
     }
+
+    @Override
+    public Course findById(Integer courseId) {
+        return courseMapper.selectByPrimaryKey(courseId);
+    }
 }

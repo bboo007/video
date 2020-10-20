@@ -39,5 +39,5 @@ public interface VideoMapper {
 
     int updateByPrimaryKey(Video record);
 
-    List<Map> findByPage(VideoQueryVo videoQueryVo);
+    List<Map<String, Object>> findByPage(VideoQueryVo videoQueryVo);
 }

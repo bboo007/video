@@ -25,7 +25,7 @@ public class VideoServiceImpl implements VideoService {
     }
 
     @Override
-    public List<Map> findByPage(VideoQueryVo videoQueryVo) {
+    public List<Map<String, Object>> findByPage(VideoQueryVo videoQueryVo) {
         return videoMapper.findByPage(videoQueryVo);
     }
 
@@ -55,5 +55,13 @@ public class VideoServiceImpl implements VideoService {
         VideoExample.Criteria criteria = videoExample.createCriteria();
         criteria.andIdIn(Arrays.asList(ids));
         return videoMapper.deleteByExample(videoExample);
+    }
+
+    @Override
+    public List<Video> findByCourseId(Integer courseId) {
+        VideoExample videoExample = new VideoExample();
+        VideoExample.Criteria criteria = videoExample.createCriteria();
+        criteria.andCourseIdEqualTo(courseId);
+        return videoMapper.selectByExample(videoExample);
     }
 }

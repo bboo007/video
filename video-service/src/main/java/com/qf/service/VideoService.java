@@ -9,7 +9,7 @@ import java.util.Map;
 public interface VideoService {
     List<Video> findAll();
 
-    List<Map> findByPage(VideoQueryVo videoQueryVo);
+    List<Map<String, Object>> findByPage(VideoQueryVo videoQueryVo);
 
     Video findByID(Integer id);
 
@@ -21,4 +21,5 @@ public interface VideoService {
 
     int delBatchVideos(Integer[] ids);
 
+    List<Video> findByCourseId(Integer courseId);
 }
