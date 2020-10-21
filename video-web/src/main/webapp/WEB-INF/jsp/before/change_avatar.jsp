@@ -32,22 +32,24 @@
         <div class="container clearfix">
             <ul class="clearfix f_left">
                 <li><a href="${pageContext.request.contextPath}">首页</a></li>
-                <li><a href="${pageContext.request.contextPath}/course/course/1">课程</a></li>
+                <li><a href="${pageContext.request.contextPath}/course/map/1">课程</a></li>
                 <li><a href="#">关于我们</a></li>
-                <li class="menu_active"><a href="${pageContext.request.contextPath}/user/showMyProfile">个人中心</a></li>
+                <li class="menu_active">
+                    <a href="${pageContext.request.contextPath}/user/show">个人中心</a>
+                </li>
             </ul>
             <div id="search_group">
                 <input type="text" placeholder="搜索课程">
                 <span id="search"></span>
             </div>
             <div id="user_bar">
-                <a href="${pageContext.request.contextPath}/user/showMyProfile">
-                    <c:if test="${empty user.imgUrl}">
+                <a href="${pageContext.request.contextPath}/user/show">
+                    <c:if test="${empty user.imgurl}">
                         <img id="avatar" src="${pageContext.request.contextPath}/img/avatar_lg.png" alt="">
                     </c:if>
 
-                    <c:if test="${not empty user.imgUrl}">
-                        <img id="avatar" src="http://localhost:8081/video/${user.imgUrl}" alt="">
+                    <c:if test="${not empty user.imgurl}">
+                        <img id="avatar" src="http://localhost:8081/video/${user.imgurl}" alt="">
                     </c:if>
 
                 </a>
@@ -63,24 +65,21 @@
             <ul class="profile_tab_header f_left clearfix">
                 <li><a href="${pageContext.request.contextPath}/user/changeProfile">更改资料</a></li>
                 <li class="profile_tab_line">|</li>
-                <li><a href="${pageContext.request.contextPath}/user/changeAvatar">更改头像</a></li>
+                <li><a href="${pageContext.request.contextPath}/user/changeAvatar/${user.imgurl}">更改头像</a></li>
                 <li class="profile_tab_line">|</li>
                 <li><a href="${pageContext.request.contextPath}/user/passwordSafe">密码安全</a></li>
             </ul>
             <div class="proflle_tab_body">
-                <h3><a href="${pageContext.request.contextPath}/user/showMyProfile">返回个人中心</a></h3>
+                <h3><a href="${pageContext.request.contextPath}/user/show">返回个人中心</a></h3>
                 <div class="proflle_tab_workplace clearfix">
                     <div class="profile_avatar_area">
-                        <c:if test="${empty user.imgUrl}">
+                        <c:if test="${empty user.imgurl}">
                             <img src="${pageContext.request.contextPath}/img/avatar_lg.png">
                         </c:if>
-
-                        <c:if test="${not empty user.imgUrl}">
+                        <c:if test="${not empty user.imgurl}">
                             <img width="200px" height="200px"
-                                 src="http://localhost:8081/video/${user.imgUrl}">
+                                 src="http://localhost:8081/video/${user.imgurl}">
                         </c:if>
-
-
                         <p style="text-align: center;">当前头像</p>
                     </div>
                     <div class="profile_ifo_area">
@@ -92,8 +91,10 @@
                             <input type="hidden" id="x2" name="x2"/>
                             <input type="hidden" id="y2" name="y2"/>
 
+                            <input type="hidden" name="id" value="${user.id}">
+
                             <p>第一步：请选择图像文件</p>
-                            <div><input type="file" name="image_file" id="image_file" onchange="fileSelectHandler()"/>
+                            <div><input type="file" name="photo" id="image_file" onchange="fileSelectHandler()"/>
                             </div>
 
                             <div class="error"></div>

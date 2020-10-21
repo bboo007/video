@@ -40,12 +40,12 @@
             </div>
             <div id="user_bar">
                 <a href="user/show">
-                    <c:if test="${empty user.imgurl}">
+                    <c:if test="${empty user.id}">
                         <img id="avatar" src="${pageContext.request.contextPath}/img/avatar_lg.png" alt="">
                     </c:if>
 
-                    <c:if test="${not empty user.imgurl}">
-                        <img id="avatar" src="http://localhost:8081/video/${user.imgurl}" alt="">
+                    <c:if test="${not empty user.id}">
+                        <img id="avatar" src="http://localhost:8081/video/${user.id}" alt="">
                     </c:if>
 
                 </a>
@@ -61,7 +61,7 @@
             <ul class="profile_tab_header f_left clearfix">
                 <li><a href="${pageContext.request.contextPath}/user/changeProfile">更改资料</a></li>
                 <li class="profile_tab_line">|</li>
-                <li><a href="${pageContext.request.contextPath}/user/changeAvatar">更改头像</a></li>
+                <li><a href="${pageContext.request.contextPath}/user/changeAvatar/${user.id}">更改头像</a></li>
                 <li class="profile_tab_line">|</li>
                 <li><a href="${pageContext.request.contextPath}/user/passwordSafe">密码安全</a></li>
             </ul>

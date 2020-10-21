@@ -105,6 +105,11 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
+
+  <insert id="updateImgUrl" >
+    update video.user set imgUrl =  #{originalFilename} where id = #{id}
+  </insert>
+
   <insert id="insert" parameterType="com.qf.pojo.User" >
     insert into user (id, email, phoneNum, 
       password, code, nickName, 

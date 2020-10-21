@@ -20,6 +20,21 @@ public class UserServiceImpl implements UserService {
         UserExample.Criteria criteria = userExample.createCriteria();
         criteria.andEmailEqualTo(email);
         List<User> userList = userMapper.selectByExample(userExample);
-        return userList != null ? userList.get(0) : null;
+        return userList.isEmpty() ? null : userList.get(0);
+    }
+
+    @Override
+    public int update(User user) {
+        return userMapper.updateByPrimaryKey(user);
+    }
+
+    @Override
+    public User findById(Integer id) {
+        return userMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public void updateImgUrl(Integer id, String originalFilename) {
+        userMapper.updateImgUrl(id, originalFilename);
     }
 }

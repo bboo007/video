@@ -29,4 +29,6 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    void updateImgUrl(@Param("id") Integer id, @Param("originalFilename") String originalFilename);
 }
