@@ -69,15 +69,22 @@
 
         <div id="userBlock" style="display:none;float:right">
 
-            <a href="javascript:;" id="loginout">退出</a>
-            <a href="${pageContext.request.contextPath}/user/showMyProfile" id="account">${sessionScope.userAccount}</a>
+            <a href="${pageContext.request.contextPath}/user/logout" id="loginout">退出</a>
+            <a href="${pageContext.request.contextPath}/user/show" id="account">${sessionScope.userAccount}</a>
         </div>
 
-        <a onclick="JavaScript:addFavorite2()"><img src="${pageContext.request.contextPath}/img/sc.png"
-                                                    draggable="false">加入收藏</a>
-        <a onclick="pyRegisterCvt()" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2580094677&site=qq&menu=yes"><img
-                src="${pageContext.request.contextPath}/img/we.png" draggable="false">联系我们</a>
-        <a class="color_e4"><img src="${pageContext.request.contextPath}/img/phone.png" draggable="false"> 0375-2089092&#x3000;&#x3000;0375-208-9051</a>
+        <a onclick="JavaScript:addFavorite2()">
+            <img src="${pageContext.request.contextPath}/img/sc.png" draggable="false">
+            加入收藏
+        </a>
+        <a onclick="pyRegisterCvt()" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2580094677&site=qq&menu=yes">
+            <img src="${pageContext.request.contextPath}/img/we.png" draggable="false">
+            联系我们
+        </a>
+        <a class="color_e4">
+            <img src="${pageContext.request.contextPath}/img/phone.png" draggable="false">
+            0375-2089092&#x3000;&#x3000;0375-208-9051
+        </a>
 
     </div>
 </header>
@@ -87,15 +94,14 @@
              draggable="false">
         <ul class="text_13 f_right">
             <li>
-                <a href="#">首页</a>
+                <a href="${pageContext.request.contextPath}/subject/list">首页</a>
             </li>
             <li class="nav_down">
                 高端课程<img src="${pageContext.request.contextPath}/img/nav_down.png" alt="" draggable="false">
                 <ul id="nav_down" class="t_center">
                     <c:forEach items="${subjectList}" var="subject">
                         <li>
-                            <a target="_blank"
-                               href="${pageContext.request.contextPath}/course/map/${subject.id}">${subject.subjectName}</a>
+                            <a href="${pageContext.request.contextPath}/course/map/${subject.id}">${subject.subjectName}</a>
                         </li>
                     </c:forEach>
                 </ul>
@@ -133,7 +139,7 @@
                     <ul>
                         <!--节-->
                         <c:forEach items="${course.videoList}" var="video" varStatus="i">
-                            <li class="section-main" onclick="getVideo(${video.id})">
+                            <li class="section-main" onclick="getVideo('${video.videoId}')">
                                 <div class="thum" style="background-image: url('${video.imageUrl}')">
                                     <!--http://vod.chengjian100.com/gkk/h5/c1/image/course/01.jpg-->
                                 </div>
@@ -152,18 +158,11 @@
                                             src="${pageContext.request.contextPath}/img/player.png" alt="">${video.time}</span>
                                 </div>
                             </li>
-
                         </c:forEach>
-
-
                     </ul>
                 </div>
-
             </c:forEach>
-
-
         </div>
-
     </div>
 </div>
 <!--页脚-->
@@ -231,7 +230,7 @@
             <img src="${pageContext.request.contextPath}/img/logo.png" alt="" class="ma">
         </div>
         <div class="mask_content_body">
-            <form id="regForm" action="insertUser">
+            <form id="regForm" action="${pageContext.request.contextPath}/user/insertUser">
                 <h3>新用户注册</h3>
                 <input type="email" id="regEmail" placeholder="请输入邮箱" name="email"><span id="emailMsg"></span>
                 <input type="password" id="regPsw" placeholder="请输入密码" name="password">
@@ -261,7 +260,7 @@
         //alert($("#isLogin").val());
         if ((null != "${sessionScope.userAccount}" && "${sessionScope.userAccount}" != "") || ($("#isLogin").val() == 1)) {
             //如果登录
-            location.href = "${pageContext.request.contextPath}/video/show?videoId=" + videoId + "&subjectName=" + '${subject.subjectName}';
+            location.href = "${pageContext.request.contextPath}/video/show/" + videoId + "/" + '${subject.subjectName}';
         } else {
             //如果不登录，弹登录框
             $("#login").removeClass("hidden");

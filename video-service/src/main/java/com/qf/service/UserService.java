@@ -10,4 +10,8 @@ public interface UserService {
     User findById(Integer id);
 
     void updateImgUrl(Integer id, String originalFilename);
+
+    int insertUser(User user);
+
+    int updatePasswordByEmail(String password, String email);
 }

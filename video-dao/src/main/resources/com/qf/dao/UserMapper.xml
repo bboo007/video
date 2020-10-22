@@ -199,6 +199,11 @@
       <include refid="Example_Where_Clause" />
     </if>
   </select>
+
+  <update id="updatePasswordByEmail" >
+    update video.user set password = #{password} where email = #{email}
+  </update>
+
   <update id="updateByExampleSelective" parameterType="map" >
     update user
     <set >

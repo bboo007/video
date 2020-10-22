@@ -37,4 +37,14 @@ public class UserServiceImpl implements UserService {
     public void updateImgUrl(Integer id, String originalFilename) {
         userMapper.updateImgUrl(id, originalFilename);
     }
+
+    @Override
+    public int insertUser(User user) {
+        return userMapper.insert(user);
+    }
+
+    @Override
+    public int updatePasswordByEmail(String password, String email) {
+        return userMapper.updatePasswordByEmail(password, email);
+    }
 }

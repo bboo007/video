@@ -12,8 +12,11 @@ public class UserInterceptor extends HandlerInterceptorAdapter {
         HttpSession session = request.getSession(false);
         if (null != session) {
             Object userAccount = session.getAttribute("userAccount");
-            return null != userAccount;
+            if (null != userAccount) {
+                return true;
+            }
         }
+        response.sendRedirect("/subject/list");
         return false;
     }
 }

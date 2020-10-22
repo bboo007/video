@@ -24,16 +24,16 @@ public class AdminController {
             if (resultAdmin != null && resultAdmin.getPassword().equals(admin.getPassword())
                     && resultAdmin.getUsername().equals(admin.getUsername())){
                 session.setAttribute("admin", resultAdmin);
-                return "forward:/video/list";
+                return "redirect:/video/list";
             }
             session.setAttribute("adminLoginInfo", "密码错误");
-            return "forward:/WEB-INF/jsp/behind/login.jsp";
+            return "redirect:/WEB-INF/jsp/behind/login.jsp";
         }
     }
 
     @RequestMapping("exit")
     public String exit(HttpSession session) {
         session.invalidate();
-        return "forward:/admin/login";
+        return "redirect:/admin/login";
     }
 }

@@ -33,30 +33,36 @@
         });
     </script>
 </head>
-
 <body class="w100">
 <header>
     <div class="container">
         <span>欢迎来到Y先生教育！</span>
-
-
         <div id="regBlock" style="display:none;float:right">
-            <a href="javascript:;" id="reg_open"><img src="${pageContext.request.contextPath}/img/we.png">注册</a>
-            <a href="javascript:;" id="login_open"><img src="${pageContext.request.contextPath}/img/we.png">登录</a>
+            <a href="javascript:;" id="reg_open">
+                <img src="${pageContext.request.contextPath}/img/we.png">
+                注册
+            </a>
+            <a href="javascript:;" id="login_open">
+                <img src="${pageContext.request.contextPath}/img/we.png">
+                登录
+            </a>
         </div>
-
         <div id="userBlock" style="display:none;float:right">
-
-            <a href="javascript:;" id="loginout">退出</a>
-            <a href="${pageContext.request.contextPath}/user/show" id="account">${sessionScope.userAccount}</a>
+            <a href="${pageContext.request.contextPath}/user/logout" id="loginout">退出</a>
+            <a href="${pageContext.request.contextPath}/user/show" id="account">${sessionScope.user.email}</a>
         </div>
-
-        <a onclick="JavaScript:addFavorite2()"><img src="${pageContext.request.contextPath}/img/sc.png"
-                                                    draggable="false">加入收藏</a>
-        <a onclick="pyRegisterCvt()" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2580094677&site=qq&menu=yes"><img
-                src="${pageContext.request.contextPath}/img/we.png" draggable="false">联系我们</a>
-        <a class="color_e4"><img src="${pageContext.request.contextPath}/img/phone.png" draggable="false"> 0375-208-9092&#x3000;&#x3000;0375-208-9051</a>
-
+        <a onclick="JavaScript:addFavorite2()">
+            <img src="${pageContext.request.contextPath}/img/sc.png" draggable="false">
+            加入收藏
+        </a>
+        <a onclick="pyRegisterCvt()" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2580094677&site=qq&menu=yes">
+            <img src="${pageContext.request.contextPath}/img/we.png" draggable="false">
+            联系我们
+        </a>
+        <a class="color_e4">
+            <img src="${pageContext.request.contextPath}/img/phone.png" draggable="false">
+            0375-208-9092&#x3000;&#x3000;0375-208-9051
+        </a>
     </div>
 </header>
 <nav class="w100">
@@ -65,37 +71,28 @@
              onclick="location.href='${pageContext.request.contextPath}'" draggable="false">
         <ul class="text_13 f_right">
             <li>
-                <a href="#" target="_blank">首页</a>
+                <a href="#">首页</a>
             </li>
             <li class="nav_down">
-                高端课程<img src="${pageContext.request.contextPath}/img/nav_down.png" alt="" draggable="false">
+                高端课程
+                <img src="${pageContext.request.contextPath}/img/nav_down.png" alt="" draggable="false">
                 <ul id="nav_down" class="t_center">
                     <c:forEach items="${subjectList}" var="subject">
-                        <li>
-                            <a target="_blank"
-                               href="${pageContext.request.contextPath}/course/map/${subject.id}">${subject.subjectName}</a>
-                        </li>
+                        <li><a href="${pageContext.request.contextPath}/course/map/${subject.id}">
+                                    ${subject.subjectName}
+                            </a></li>
                     </c:forEach>
                 </ul>
             </li>
-            <li id="gkk" class="nav_choose">
-                <a href="#">在线公开课</a>
-            </li>
-            <li>
-                <a href="#">专家师资</a>
-            </li>
-
+            <li id="gkk" class="nav_choose"><a href="#">在线公开课</a></li>
+            <li><a href="#">专家师资</a></li>
             <li><a href="#">Y先生新闻</a></li>
-            <li class="nav_last">
-                <a href="#">关于Y先生</a>
-            </li>
+            <li class="nav_last"><a href="#">关于Y先生</a></li>
         </ul>
     </div>
 </nav>
-
 <!--banner图-->
 <div class="banner index-banner"></div>
-
 <!--模块化课程-->
 <div class="course">
     <div class="container">
@@ -148,8 +145,8 @@
                     </td>
                     <td colspan="2">
                         <a href="${pageContext.request.contextPath}/course/map/10">
-                            <img src="${pageContext.request.contextPath}/img/python.jpg" alt="" class="image scale"
-                                 draggable="false">
+                            <img src="${pageContext.request.contextPath}/img/python.jpg"
+                                 alt="" class="image scale" draggable="false">
                             <div class="headline">
                                 <span>Python教程</span>
                                 <img src="${pageContext.request.contextPath}/img/arrow.png" alt="">
@@ -218,7 +215,6 @@
             <h3>校区地址</h3>
             <ul>
                 <li>地址<br>河南省平顶山市龙翔大道河南Y先生学院</li>
-
             </ul>
         </li>
         <li class="mt25">
@@ -270,7 +266,7 @@
             <img src="${pageContext.request.contextPath}/img/logo.png" alt="" class="ma">
         </div>
         <div class="mask_content_body">
-            <form id="regForm" action="user/insertUser.action">
+            <form id="regForm" action="#">
                 <h3>新用户注册</h3>
                 <input type="email" id="regEmail" placeholder="请输入邮箱" name="email"><span id="emailMsg"></span>
                 <input type="password" id="regPsw" placeholder="请输入密码" name="password">
@@ -280,7 +276,7 @@
                     <input type="text" name="yzm" style="width: 45%; display: inline-block;">
                     <div id="v_container" style="width: 45%;height: 40px;float:right;"></div>
                 </div>
-                <input type="submit" onclick="return commitRegForm();" value="注&#x3000;册">
+                <button type="button" onclick="commitRegForm();">注&#x3000;册</button>
             </form>
         </div>
         <div class="mask_content_footer">

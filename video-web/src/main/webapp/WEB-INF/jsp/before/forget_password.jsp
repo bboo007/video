@@ -64,7 +64,7 @@
 </header>
 <main>
     <div class="container">
-        <form class="ma" action="${pageContext.request.contextPath}/user/validateEmailCode">
+        <form class="ma" action="${pageContext.request.contextPath}/user/resetPassword" method="post">
             <div class="form_header">
                 <div class="form_title">
                     <h2>忘记密码</h2>
@@ -76,8 +76,10 @@
             </div>
             <div class="form_body">
                 <input type="email" placeholder="请输入登录邮箱" name="email" value="${email}">
-                <input type="text" placeholder="请输入验证码" name="code"><input type="button" id="yzmBtn" value="获取验证码"/>
-                <input type="submit" value="提交">
+                <input type="text" placeholder="请输入验证码" name="code" id="input-code">
+                <span id="input-code-tips"></span>
+                <input type="button" id="yzmBtn" value="获取验证码"/>
+                <input type="submit" value="提交" disabled id="code-submit" style="color: #e2e2e2">
             </div>
             <div class="form_footer">
                 <div class="FAQ">
@@ -87,6 +89,18 @@
         </form>
     </div>
 </main>
+<script>
+    $('#input-code').on('change', function () {
+        var inputCode = this.value;
+        $.post("/user/validateEmailCode", {'code':inputCode}, function (result) {
+            if (result === 'success') {
+                $('#code-submit').prop('disabled', false).css("color", '#ffffff');
+                $('#input-code-tips').text('验证码正确');
+            } else {
+                $('#input-code-tips').text('验证码错误');
+            }
+        })
+    })
+</script>
 </body>
-
 </html>

@@ -31,7 +31,7 @@
     <menu>
         <div class="container clearfix">
             <ul class="clearfix f_left">
-                <li><a href="${pageContext.request.contextPath}">首页</a></li>
+                <li><a href="${pageContext.request.contextPath}/subject/list">首页</a></li>
                 <li><a href="${pageContext.request.contextPath}/course/map/1">课程</a></li>
                 <li><a href="#">关于我们</a></li>
                 <li class="menu_active">
@@ -44,16 +44,14 @@
             </div>
             <div id="user_bar">
                 <a href="${pageContext.request.contextPath}/user/show">
-                    <c:if test="${empty user.imgurl}">
+                    <c:if test="${empty sessionScope.user.imgurl}">
                         <img id="avatar" src="${pageContext.request.contextPath}/img/avatar_lg.png" alt="">
                     </c:if>
-
-                    <c:if test="${not empty user.imgurl}">
-                        <img id="avatar" src="http://localhost:8081/video/${user.imgurl}" alt="">
+                    <c:if test="${not empty sessionScope.user.imgurl}">
+                        <img id="avatar" src="http://localhost:8081/video/${sessionScope.user.imgurl}" alt="">
                     </c:if>
-
                 </a>
-                <a href="${pageContext.request.contextPath}/user/loginOut2" id="lay_out">退出</a>
+                <a href="${pageContext.request.contextPath}/user/logout" id="lay_out">退出</a>
             </div>
         </div>
     </menu>
@@ -65,20 +63,19 @@
             <ul class="profile_tab_header f_left clearfix">
                 <li><a href="${pageContext.request.contextPath}/user/changeProfile">更改资料</a></li>
                 <li class="profile_tab_line">|</li>
-                <li><a href="${pageContext.request.contextPath}/user/changeAvatar/${user.imgurl}">更改头像</a></li>
+                <li><a href="${pageContext.request.contextPath}/user/changeAvatar">更改头像</a></li>
                 <li class="profile_tab_line">|</li>
-                <li><a href="${pageContext.request.contextPath}/user/passwordSafe">密码安全</a></li>
+                <li><a href="${pageContext.request.contextPath}/user/updatePassword">密码安全</a></li>
             </ul>
             <div class="proflle_tab_body">
                 <h3><a href="${pageContext.request.contextPath}/user/show">返回个人中心</a></h3>
                 <div class="proflle_tab_workplace clearfix">
                     <div class="profile_avatar_area">
-                        <c:if test="${empty user.imgurl}">
+                        <c:if test="${empty sessionScope.user.imgurl}">
                             <img src="${pageContext.request.contextPath}/img/avatar_lg.png">
                         </c:if>
-                        <c:if test="${not empty user.imgurl}">
-                            <img width="200px" height="200px"
-                                 src="http://localhost:8081/video/${user.imgurl}">
+                        <c:if test="${not empty sessionScope.user.imgurl}">
+                            <img width="200px" height="200px" src="http://localhost:8081/video/${sessionScope.user.imgurl}">
                         </c:if>
                         <p style="text-align: center;">当前头像</p>
                     </div>
@@ -90,21 +87,14 @@
                             <input type="hidden" id="y1" name="y1"/>
                             <input type="hidden" id="x2" name="x2"/>
                             <input type="hidden" id="y2" name="y2"/>
-
-                            <input type="hidden" name="id" value="${user.id}">
-
                             <p>第一步：请选择图像文件</p>
-                            <div><input type="file" name="photo" id="image_file" onchange="fileSelectHandler()"/>
+                            <div>
+                                <input type="file" name="photo" id="image_file" onchange="fileSelectHandler()"/>
                             </div>
-
                             <div class="error"></div>
-
                             <div class="step2">
                                 <p>第二步：请选择需要截图的部位,然后按上传</p>
-                                <img id="preview">
-                                <br>
-
-
+                                <img id="preview"><br>
                                 <input type="submit" value="上传"/>
                             </div>
                         </form>

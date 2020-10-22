@@ -29,7 +29,7 @@
     <menu>
         <div class="container clearfix">
             <ul class="clearfix f_left">
-                <li><a href="${pageContext.request.contextPath}">首页</a></li>
+                <li><a href="${pageContext.request.contextPath}/subject/list">首页</a></li>
                 <li><a href="${pageContext.request.contextPath}/course/map/1">课程</a></li>
                 <li><a href="#">关于我们</a></li>
                 <li class="menu_active"><a href="${pageContext.request.contextPath}/user/show">个人中心</a></li>
@@ -39,17 +39,15 @@
                 <span id="search"></span>
             </div>
             <div id="user_bar">
-                <a href="user/show">
-                    <c:if test="${empty user.id}">
+                <a href="${pageContext.request.contextPath}/user/show">
+                    <c:if test="${empty sessionScope.user.imgurl}">
                         <img id="avatar" src="${pageContext.request.contextPath}/img/avatar_lg.png" alt="">
                     </c:if>
-
-                    <c:if test="${not empty user.id}">
-                        <img id="avatar" src="http://localhost:8081/video/${user.id}" alt="">
+                    <c:if test="${not empty sessionScope.user.imgurl}">
+                        <img id="avatar" src="http://localhost:8081/video/${sessionScope.user.imgurl}" alt="">
                     </c:if>
-
                 </a>
-                <a href="${pageContext.request.contextPath}/user/loginOut2" id="lay_out">退出</a>
+                <a href="${pageContext.request.contextPath}/user/logout" id="lay_out">退出</a>
             </div>
         </div>
     </menu>
@@ -61,47 +59,48 @@
             <ul class="profile_tab_header f_left clearfix">
                 <li><a href="${pageContext.request.contextPath}/user/changeProfile">更改资料</a></li>
                 <li class="profile_tab_line">|</li>
-                <li><a href="${pageContext.request.contextPath}/user/changeAvatar/${user.id}">更改头像</a></li>
+                <li><a href="${pageContext.request.contextPath}/user/changeAvatar">更改头像</a></li>
                 <li class="profile_tab_line">|</li>
-                <li><a href="${pageContext.request.contextPath}/user/passwordSafe">密码安全</a></li>
+                <li><a href="${pageContext.request.contextPath}/user/updatePassword">密码安全</a></li>
             </ul>
             <div class="proflle_tab_body">
 
                 <div class="proflle_tab_workplace clearfix">
                     <div class="profile_avatar_area">
-                        <c:if test="${empty user.imgurl}">
+                        <c:if test="${empty sessionScope.user.imgurl}">
                             <img id="avatar" src="${pageContext.request.contextPath}/img/avatar_lg.png" alt="">
                         </c:if>
-
-                        <c:if test="${not empty user.imgurl}">
+                        <c:if test="${not empty sessionScope.user.imgurl}">
                             <img id="avatar" width="180px" heigth="180px"
-                                 src="http://localhost:8081/video/${user.imgurl}" alt="">
+                                 src="http://localhost:8081/video/${sessionScope.user.imgurl}" alt="">
                         </c:if>
                         <p>
-                            <c:if test="${not empty user.nickname}">
-                                <span>${user.nickname}</span>
+                            <c:if test="${not empty sessionScope.user.nickname}">
+                                <span>${sessionScope.user.nickname}</span>
                             </c:if>
-                            <c:if test="${empty user.nickname}">
-                                <span>${user.email}</span>
+                            <c:if test="${empty sessionScope.user.nickname}">
+                                <span>${sessionScope.user.email}</span>
                             </c:if>
-                            欢迎回来！</p>
+                            欢迎回来！
+                        </p>
                     </div>
                     <ul class="profile_ifo_area">
-                        <li><span class="dd">昵&#x3000;称：</span>${user.nickname}</li>
-                        <li><span class="dd">性&#x3000;别：</span>
-                            <c:if test="${user.sex=='woman'}">
+                        <li><span class="dd">昵&#x3000;称：</span>${sessionScope.user.nickname}</li>
+                        <li>
+                            <span class="dd">性&#x3000;别：</span>
+                            <c:if test="${sessionScope.user.sex=='woman'}">
                                 女
                             </c:if>
-                            <c:if test="${user.sex=='man'}">
+                            <c:if test="${sessionScope.user.sex=='man'}">
                                 男
                             </c:if>
                         </li>
-                        <li><span class="dd">生&#x3000;日：</span>
-                            <time data="1990-06-06">${user.birthday}</time>
+                        <li>
+                            <span class="dd">生&#x3000;日：</span>
+                            <time data="1990-06-06">${sessionScope.user.birthday}</time>
                         </li>
-                        <li><span class="dd">邮&#x3000;箱：</span>${user.email}</li>
-                        <li><span class="dd">所在地：</span>${user.address}</li>
-
+                        <li><span class="dd">邮&#x3000;箱：</span>${sessionScope.user.email}</li>
+                        <li><span class="dd">所在地：</span>${sessionScope.user.address}</li>
                     </ul>
                 </div>
             </div>

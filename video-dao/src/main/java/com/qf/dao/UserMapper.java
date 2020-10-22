@@ -31,4 +31,6 @@ public interface UserMapper {
     int updateByPrimaryKey(User record);
 
     void updateImgUrl(@Param("id") Integer id, @Param("originalFilename") String originalFilename);
+
+    int updatePasswordByEmail(@Param("password") String password, @Param("email") String email);
 }

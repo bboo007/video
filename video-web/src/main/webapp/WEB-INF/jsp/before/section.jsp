@@ -49,33 +49,34 @@
 
         <div id="userBlock" style="display:none;float:right">
 
-            <a href="javascript:;" id="loginout2">退出</a>
-            <a href="${pageContext.request.contextPath}/user/showMyProfile" id="account">${sessionScope.userAccount}</a>
+            <a href="${pageContext.request.contextPath}/user/logout" id="loginout2">退出</a>
+            <a href="${pageContext.request.contextPath}/user/show" id="account">${sessionScope.userAccount}</a>
         </div>
 
-        <a onclick="JavaScript:addFavorite2()"><img src="${pageContext.request.contextPath}/img/sc.png"
-                                                    draggable="false">加入收藏</a>
-        <a onclick="pyRegisterCvt()" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2580094677&site=qq&menu=yes"><img
-                src="${pageContext.request.contextPath}/img/we.png" draggable="false">联系我们</a>
-        <a class="color_e4"><img src="${pageContext.request.contextPath}/img/phone.png" draggable="false"> 0375-208-9092&#x3000;&#x3000;0375-208-9051</a>
-
+        <a onclick="JavaScript:addFavorite2()">
+            <img src="${pageContext.request.contextPath}/img/sc.png" draggable="false">加入收藏</a>
+        <a onclick="pyRegisterCvt()" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2580094677&site=qq&menu=yes">
+            <img src="${pageContext.request.contextPath}/img/we.png" draggable="false">联系我们</a>
+        <a class="color_e4">
+            <img src="${pageContext.request.contextPath}/img/phone.png" draggable="false">
+            0375-208-9092&#x3000;&#x3000;0375-208-9051
+        </a>
     </div>
 </header>
 <nav class="w100">
     <div class="container">
-        <img src="${pageContext.request.contextPath}/img/logo.png" alt="Y先生教育的logo" onclick="location.href='index.html'"
+        <img src="${pageContext.request.contextPath}/img/logo.png" alt="Y先生教育的logo" onclick="location.href='/subject/list'"
              draggable="false">
         <ul class="text_13 f_right">
             <li>
-                <a href="http://chengjian100.com/" target="_blank">首页</a>
+                <a href="${pageContext.request.contextPath}/subject/list" target="_blank">首页</a>
             </li>
             <li class="nav_down">
                 高端课程<img src="${pageContext.request.contextPath}/img/nav_down.png" alt="" draggable="false">
                 <ul id="nav_down" class="t_center">
                     <c:forEach items="${subjectList}" var="subject">
                         <li>
-                            <a target="_blank"
-                               href="${pageContext.request.contextPath}/course/map/${subject.id}">${subject.subjectName}</a>
+                            <a href="${pageContext.request.contextPath}/course/map/${subject.id}">${subject.subjectName}</a>
                         </li>
                     </c:forEach>
                 </ul>

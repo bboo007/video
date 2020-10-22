@@ -19,7 +19,7 @@
         
         $(function(){
            
-           var sex = '${user.sex}';
+           var sex = '${sessionScope.user.sex}';
            $("input[name='sex']").each(function(i,obj){
                //obj是dom对象     不是jquery对象
                //alert(obj+","+i);
@@ -30,11 +30,10 @@
                }
            });
            
-           var address ='${user.address}'; //""  河南-平顶山
+           var address ='${sessionScope.user.address}'; //""  河南-平顶山
            
            if(null!=address && address!=""){
                var arr=address.split("-");
-        
 	            $("#city").citySelect({
 		            prov: arr[0],  //默认省份 
 		            city: arr[1],  //默认城市
@@ -47,7 +46,6 @@
 		            nodata: "none"
 		        });
            }
-           
          });   
          
          function commitForm(){
@@ -74,7 +72,7 @@
         <menu>
             <div class="container clearfix">
                 <ul class="clearfix f_left">
-                    <li><a href="${pageContext.request.contextPath}">首页</a></li>
+                    <li><a href="${pageContext.request.contextPath}/subject/list">首页</a></li>
                     <li><a href="${pageContext.request.contextPath}/course/map/1">课程</a></li>
                     <li><a href="#">关于我们</a></li>
                     <li class="menu_active"><a href="${pageContext.request.contextPath}/user/show">个人中心</a></li>
@@ -85,16 +83,16 @@
                 </div>
                 <div id="user_bar">
                     <a href="${pageContext.request.contextPath}/user/show">
-                      <c:if test="${empty user.imgurl}">
+                      <c:if test="${empty sessionScope.user.imgurl}">
                          <img id="avatar" src="${pageContext.request.contextPath}/img/avatar_lg.png" alt="">
                       </c:if>
                       
-                      <c:if test="${not empty user.imgurl}">
-                         <img id="avatar" src="http://localhost:8081/video/${user.imgurl}" alt="">
+                      <c:if test="${not empty sessionScope.user.imgurl}">
+                         <img id="avatar" src="http://localhost:8081/video/${sessionScope.user.imgurl}" alt="">
                       </c:if>
                        
                     </a>
-                    <a href="${pageContext.request.contextPath}/user/loginOut2" id="lay_out">退出</a>
+                    <a href="${pageContext.request.contextPath}/user/logout" id="lay_out">退出</a>
                 </div>
             </div>
         </menu>
@@ -108,26 +106,19 @@
                     <li class="profile_tab_line">|</li>
                     <li><a href="${pageContext.request.contextPath}/user/changeAvatar">更改头像</a></li>
                     <li class="profile_tab_line">|</li>
-                    <li><a href="${pageContext.request.contextPath}/user/passwordSafe">密码安全</a></li>
+                    <li><a href="${pageContext.request.contextPath}/user/updatePassword">密码安全</a></li>
                 </ul>
                 <div class="proflle_tab_body">
-                    <h3><a href="${pageContext.request.contextPath}/user/showMyProfile">返回个人中心</a></h3>
+                    <h3><a href="${pageContext.request.contextPath}/user/show">返回个人中心</a></h3>
                     <div class="proflle_tab_workplace clearfix">
                         <div class="profile_avatar_area">
-                            <img width="180px" height="180px"  src="http://localhost:8081/video/${user.imgurl}">
+                            <img width="180px" height="180px"  src="http://localhost:8081/video/${sessionScope.user.imgurl}">
                         </div>
                         <div class="profile_ifo_area">
                             <!--http://localhost/video/user/changeProfile-->
-                            <form action="/user/update" method="post">
-                                <input name="id" type="hidden" value="${user.id}">
-                                <input name="email" type="hidden" value="${user.email}">
-                                <input name="phonenum" type="hidden" value="${user.phonenum}">
-                                <input name="password" type="hidden" value="${user.password}">
-                                <input name="code" type="hidden" value="${user.code}">
-                                <input name="createtime" type="hidden" value="${user.createtime}">
-                                <input name="imgurl" type="hidden" value="${user.imgurl}">
+                            <form action="${pageContext.request.contextPath}/user/update" method="post">
                                 <div class="form_group">
-                                    <span class="dd">昵&#x3000;称：</span><input type="text" name="nickname" value="${user.nickname}" >
+                                    <span class="dd">昵&#x3000;称：</span><input type="text" name="nickname" value="${sessionScope.user.nickname}" >
                                 </div>
                                 <div class="form_group">
                                     <span class="dd">性&#x3000;别：</span>
@@ -136,11 +127,11 @@
                                 </div>
                                 <div class="form_group">
                                     <span class="dd">生&#x3000;日：</span>  <!-- 1990-10-04 -->
-                                    <input type="text"  name="birthday" value="${user.birthday}">
+                                    <input type="text"  name="birthday" value="${sessionScope.user.birthday}">
                                 </div>
                                 <div class="form_group">
                                     <span class="dd">邮&#x3000;箱：</span>
-                                    <span >${user.email}</span>
+                                    <span >${sessionScope.user.email}</span>
                                 </div>
                                 <div class="form_group">
                                     <span class="dd">所在地：</span>
